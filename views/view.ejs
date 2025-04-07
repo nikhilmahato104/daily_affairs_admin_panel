@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f9;
+      padding: 20px;
+      color: #333;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .category {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .category-header {
+      background-color: #3498db;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category-header:hover {
+      background-color: #2980b9;
+    }
+
+    .notes-list {
+      display: none;
+      padding: 10px 20px;
+    }
+
+    li {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      list-style: none;
+    }
+
+    a {
+      color: #2980b9;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    small {
+      display: block;
+      color: #555;
+      margin: 5px 0;
+      word-wrap: break-word;
+    }
+
+    form {
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #34495e;
+      border: 1px solid #34495e;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .back-link:hover {
+      background-color: #34495e;
+      color: white;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .arrow.rotate {
+      transform: rotate(90deg);
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .category-header {
+        padding: 12px 15px;
+        font-size: 16px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 13px;
+        padding: 5px 10px;
+      }
+
+      .notes-list {
+        padding: 10px 15px;
+      }
+
+      li {
+        font-size: 14px;
+      }
+
+      .back-link {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 All Uploaded Notes</h1>
+
+  <% allNotes.forEach(section => { %>
+    <div class="category">
+      <div class="category-header" onclick="toggleNotes(this)">
+        <span><%= section.category %></span>
+        <span class="arrow">▶</span>
+      </div>
+      <ul class="notes-list">
+        <% section.notes.forEach(note => { %>
+          <li>
+            <strong><%= note.title %></strong> -
+            <a href="<%= note.link %>" target="_blank">View Link</a>
+            <small><%= note.description %></small>
+            <form action="/admin/delete" method="POST">
+              <input type="hidden" name="id" value="<%= note._id %>">
+              <input type="hidden" name="category" value="<%= section.category %>">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  <% }) %>
+
+  <a class="back-link" href="/admin">⬅ Back to Dashboard</a>
+
+  <script>
+    function toggleNotes(header) {
+      const notesList = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow');
+      notesList.style.display = notesList.style.display === 'block' ? 'none' : 'block';
+      arrow.classList.toggle('rotate');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<h2 class="upload-heading">📤 Upload PPT Google Drive Link</h2>
+
+<form action="/admin/upload" method="POST" class="upload-form">
+  <div class="form-group">
+    <input type="text" name="title" placeholder="Enter Title" required />
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="link" placeholder="Google Drive Link" required />
+  </div>
+
+  <div class="form-group">
+    <textarea name="description" placeholder="Description" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <select name="category" required>
+      <option value="">-- Select Category --</option>
+      <option value="LPU_CLASS_NOTES1">LPU_CLASS_NOTES1</option>
+      <option value="LPU_CLASS_NOTES2">LPU_CLASS_NOTES2</option>
+      <option value="LPU_CLASS_NOTES3">LPU_CLASS_NOTES3</option>
+      <option value="LPU_CLASS_NOTES4">LPU_CLASS_NOTES4</option>
+      <option value="CURRENT_AFFAIRS">CURRENT_AFFAIRS</option>
+      <option value="IMPORTANT_NOTES">IMPORTANT_NOTES</option>
+    </select>
+  </div>
+
+  <button type="submit">Upload</button>
+</form>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .upload-heading {
+    text-align: center;
+    color: #2c3e50;
+    margin: 40px 20px 20px;
+    font-size: 26px;
+  }
+
+  .upload-form {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  button {
+    width: 100%;
+    background-color: #3498db;
+    color: #fff;
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  @media screen and (max-width: 600px) {
+    .upload-form {
+      margin: 20px 10px;
+      padding: 24px;
+      border-radius: 14px;
+    }
+
+    .upload-heading {
+      font-size: 22px;
+      margin: 30px 10px 20px;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+      font-size: 15px;
+      padding: 13px;
+    }
+
+    button {
+      font-size: 16px;
+    }
+  }
+</style>

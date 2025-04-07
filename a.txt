@@ -1,0 +1,6 @@
+contactfreelancerpro
+
+aPFfTv6pnzucGYG5
+
+
+mongodb+srv://contactfreelancerpro:aPFfTv6pnzucGYG5@notes-cluster-dailyaffa.wgiyyum.mongodb.net/
