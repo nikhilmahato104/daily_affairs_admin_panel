@@ -84,4 +84,22 @@ router.post('/delete', async (req, res) => {
   }
 });
 
+
+// =========================
+// API: Get All Notes (for frontend)
+// =========================
+router.get('/api/notes', async (req, res) => {
+  const allNotes = [];
+
+  try {
+    for (const [category, Model] of Object.entries(categoryModels)) {
+      const notes = await Model.find();
+      allNotes.push({ category, notes });
+    }
+    res.json(allNotes); // 👈 Send JSON response to frontend
+  } catch (err) {
+    res.status(500).json({ error: 'Error fetching notes.' });
+  }
+});
+
 module.exports = router;
